@@ -1,4 +1,3 @@
-
 //SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.0;
 
@@ -10,8 +9,8 @@ contract DonationsAccepting {
         uint amount;
         address donater;
     }
-
     Donation[] donations;
+
     address owner;
 
     constructor() {
@@ -20,6 +19,7 @@ contract DonationsAccepting {
 
     function reseive() external payable {
         donations.push(Donation(msg.value, msg.sender));
+        console.log("%s donate %s wei", msg.sender, msg.value);
     }
 
     function getDonatesInfo() public view returns(Donation[] memory){
@@ -33,25 +33,4 @@ contract DonationsAccepting {
 
         _to.transfer(address(this).balance);
     }
-
-
-//    string private greeting;
-//
-//    function DonationsAccepting(){
-//
-//    }
-//
-//    constructor(string memory _greeting) {
-//        console.log("Deploying a Greeter with greeting:", _greeting);
-//        greeting = _greeting;
-//    }
-//
-//    function greet() public view returns (string memory) {
-//        return greeting;
-//    }
-//
-//    function setGreeting(string memory _greeting) public {
-//        console.log("Changing greeting from '%s' to '%s'", greeting, _greeting);
-//        greeting = _greeting;
-//    }
 }
